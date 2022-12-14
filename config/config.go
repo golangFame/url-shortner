@@ -50,7 +50,7 @@ var confList = map[string]argvMeta{
 	},
 	enums.POSTGRESQL_REPLICAS: {
 		"postgres replica urls separated by ||",
-		"host=localhost port=5432 user=postgres password=1 dbname=url_shortner",
+		"host=localhost port=5432 user=postgres password=1 dbname=url_shortner sslmode=disable",
 	},
 	enums.REDIS_SERVER: {
 		"redis server",
