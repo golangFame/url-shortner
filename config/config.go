@@ -1,7 +1,9 @@
 package config
 
 import (
-	"github.com/goferHiro/url-shortener/enums"
+	"fmt"
+	"github.com/goferHiro/url-shortner/enums"
+	"time"
 )
 
 type argvMeta struct {
@@ -12,7 +14,7 @@ type argvMeta struct {
 var confList = map[string]argvMeta{
 	enums.APP_NAME: {
 		"app name",
-		"url-shortener",
+		"url-shortner",
 	},
 	enums.ENV: {
 		"environment",
@@ -28,7 +30,7 @@ var confList = map[string]argvMeta{
 	},
 	enums.POSTGRESQL_DB: {
 		"postgresql db name",
-		"url_shortener",
+		"url_shortner",
 	},
 	enums.POSTGRESQL_HOST: {
 		"postgresql host",
@@ -48,7 +50,7 @@ var confList = map[string]argvMeta{
 	},
 	enums.POSTGRESQL_REPLICAS: {
 		"postgres replica urls separated by ||",
-		"host=localhost port=5432 user=postgres password=1 dbname=url_shortener",
+		"host=localhost port=5432 user=postgres password=1 dbname=url_shortner",
 	},
 	enums.REDIS_SERVER: {
 		"redis server",
@@ -65,5 +67,21 @@ var confList = map[string]argvMeta{
 	enums.TIMEZONE: {
 		"timezone to be used",
 		"UTC",
+	},
+	enums.JWT_SECRET: {
+		"jwt secret key",
+		"Hiro",
+	},
+	enums.JWT_ISSUER: {
+		"jwt issuer",
+		"Bzinga",
+	},
+	enums.JWT_EXPIRY_INTERVAL: {
+		"jwt token expiry",
+		fmt.Sprint(time.Hour * 24 * 365),
+	},
+	enums.API_KEY: {
+		"api key",
+		"eb5cddc8-1978-4d7a-98ce-9798e183ea4e",
 	},
 }

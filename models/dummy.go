@@ -22,8 +22,8 @@ func (d *Dummy) Fetch(db *bun.DB, ctx context.Context) (err error) {
 	return
 }
 
-func (d *Dummy) FetchAll(db *bun.DB, ctx context.Context) (providers []Dummy, err error) {
-	query := db.NewSelect().Model(&providers)
+func (d *Dummy) FetchAll(db *bun.DB, ctx context.Context) (dummies []Dummy, err error) {
+	query := db.NewSelect().Model(&dummies)
 	err = query.Scan(ctx)
 	return
 }
