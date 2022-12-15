@@ -3,7 +3,6 @@ module github.com/goferHiro/url-shortner
 go 1.19
 
 require (
-	github.com/aymerick/raymond v2.0.3-0.20180322193309-b565731e1464+incompatible
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/gocraft/work v0.5.1
@@ -21,7 +20,6 @@ require (
 	github.com/spf13/viper v1.14.0
 	go.uber.org/fx v1.18.2
 	go.uber.org/multierr v1.8.0
-	golang.org/x/crypto v0.2.0
 )
 
 require (
@@ -55,6 +53,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/dig v1.15.0 // indirect
 	go.uber.org/zap v1.22.0 // indirect
+	golang.org/x/crypto v0.2.0 // indirect
 	golang.org/x/net v0.2.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.4.0 // indirect

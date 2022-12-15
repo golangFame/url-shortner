@@ -10,6 +10,8 @@ import (
 	"github.com/hiroBzinga/bun"
 	"github.com/hiroBzinga/bun/dialect/pgdialect"
 	log "github.com/sirupsen/logrus"
+
+	_ "github.com/lib/pq"
 )
 
 type QueryHook struct {
@@ -44,7 +46,7 @@ func newPostgressDB(database *db) (db *bun.DB) {
 	dbPass := conf.GetString(enums.POSTGRESQL_PASSWORD)
 	dbName := conf.GetString(enums.POSTGRESQL_DB)
 
-	dbUrl := fmt.Sprintf(`host=%s port=%s user=%s password=%s dbname=%s sslmode=disable sslmode=disable`, dbHost, dbPort, dbUser, dbPass, dbName)
+	dbUrl := fmt.Sprintf(`host=%s port=%s user=%s password=%s dbname=%s sslmode=disable`, dbHost, dbPort, dbUser, dbPass, dbName)
 
 	if sqlDB, err := sql.Open(driverName, dbUrl); err == nil {
 
