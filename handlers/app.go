@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/goferHiro/url-shortner/entities"
 	"net/http"
@@ -20,7 +21,7 @@ func (h *AppHandler) Home(c *gin.Context) {
 }
 
 type urlReq struct {
-	url string `json:"url" binding:"required"`
+	Url string `json:"url" binding:"required"`
 }
 
 func (h *AppHandler) ShortenUrl(c *gin.Context) {
@@ -36,11 +37,31 @@ func (h *AppHandler) ShortenUrl(c *gin.Context) {
 
 	}
 
-	shortUrl := h.appServices.ShortenUrl(u1.url)
+	shortUrl := h.appServices.ShortenUrl(u1.Url)
+
+	host := c.Request.Host
+	path := c.Request.URL.RequestURI()
 
 	c.JSON(http.StatusOK, gin.H{
-		"short-url": shortUrl,
-		"url":       u1.url,
+		"short-url": fmt.Sprintf("http://%s%s/%s", host, path, shortUrl),
+		"Url":       u1.Url,
 	})
 
+}
+
+func (h *AppHandler) RetrieveUrl(c *gin.Context) {
+
+	shortUrl := c.Param("surl")
+
+	origUrl, err := h.appServices.RetrieveOriginalUrl(shortUrl)
+
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": err.Error(),
+		})
+		return
+
+	}
+
+	c.Redirect(http.StatusPermanentRedirect, origUrl)
 }

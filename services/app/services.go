@@ -38,6 +38,7 @@ func (s *service) ShortenUrl(url string) (shortenedUrl string) {
 		}
 
 		revUrlMap[shortenedUrl] = url
+		urlMap[url] = shortenedUrl
 
 	}
 	return

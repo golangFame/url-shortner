@@ -19,5 +19,6 @@ func (s *service) RoutesWithNoAuth(r *gin.RouterGroup, mws ...Middleware) {
 	appRouter.GET("/", s.appHandler.Home)
 
 	appRouter.POST("/url", s.appHandler.ShortenUrl)
+	appRouter.GET("/url/:surl", s.appHandler.RetrieveUrl)
 
 }
