@@ -6,6 +6,8 @@ import (
 )
 
 type Services interface {
+	ShortenUrl(url string) (shortenedUrl string)
+	RetrieveOriginalUrl(shortUrl string) (url string, err error)
 }
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
