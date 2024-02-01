@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"strings"
+	"time"
 )
 
 type Services interface {
@@ -22,9 +23,18 @@ func randStringBytes(n int) string {
 	return string(b)
 }
 
+type URL struct {
+	u      string
+	expiry time.Time
+}
+
+var expiryMap = make(map[string]URL)
+
 var urlMap = make(map[string]string)
 
 var revUrlMap = make(map[string]string)
+
+var expiryInterval = time.Minute * 1
 
 func (s *service) ShortenUrl(url string) (shortenedUrl string) {
 
@@ -45,11 +55,24 @@ func (s *service) ShortenUrl(url string) (shortenedUrl string) {
 
 		revUrlMap[shortenedUrl] = url
 		urlMap[url] = shortenedUrl
+
+		expiryMap[shortenedUrl] = URL{
+			u:      shortenedUrl,
+			expiry: time.Now().Add(expiryInterval),
+		}
+
 	}
 	return
 }
 
 func (s *service) RetrieveOriginalUrl(shortUrl string) (url string, err error) {
+
+	expiry_ := expiryMap[shortUrl]
+
+	if time.Now().After(expiry_.expiry) {
+		err = fmt.Errorf("shortned url has expired at %v", expiry_.expiry)
+		return
+	}
 
 	url = revUrlMap[shortUrl]
 
