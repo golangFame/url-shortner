@@ -12,6 +12,8 @@ var Module = fx.Options(
 	),
 )
 
+var Config *viper.Viper
+
 func New() (config *viper.Viper) {
 	config = viper.New()
 

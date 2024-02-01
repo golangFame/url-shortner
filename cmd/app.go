@@ -1,6 +1,8 @@
 package main
 
 import (
+	"go.uber.org/fx"
+
 	"github.com/goferHiro/url-shortner/config"
 	"github.com/goferHiro/url-shortner/handlers"
 	"github.com/goferHiro/url-shortner/internal"
@@ -8,7 +10,6 @@ import (
 	"github.com/goferHiro/url-shortner/router"
 	"github.com/goferHiro/url-shortner/server"
 	"github.com/goferHiro/url-shortner/services"
-	"go.uber.org/fx"
 )
 
 func serverRun() {
